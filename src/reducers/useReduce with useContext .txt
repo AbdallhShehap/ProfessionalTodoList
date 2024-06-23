@@ -1,0 +1,111 @@
+useReduce with useContext 
+
+1- createContext and the reduce (the function for reduce )
+
+CounterContext = createContext()
+
+consr reduce = (state , action) =>{
+
+switch(action.type) {
+    
+   case"add":
+              return {count : state.count + 1}        
+ 
+        
+ case"decriment":
+              return {count : state.count - 1}        
+ 
+        }
+}
+
+
+
+2- create the provider with the children but do't foget match the reduce {state and the dispatch} to pass all this in the all childern's 
+ 
+	function CounterProvider({children}){
+		
+		const [state, dispatch]= useReduce(reduce,{count:0}
+			
+		return(
+				<CounterContext.Provider value={{state,dispatch}}>
+					{children}
+				<ConterContext.Provider/>
+
+				)
+		
+		
+	}
+
+******* the step 2 it for pass all data when put this CounteerProvider around the componnet that want send all the datato his child's , almost be the App componnet like this : 
+
+<CounterProvider>
+<App/>
+<CounterProvider/>
+
+
+3- create the custom hook 
+
+	function useCounter(){
+			
+	     //import the useContext 
+	     // inside the useContext choose which context that I MADE CREATED before 
+ 
+	     const context = useContext(CounterContext)
+			
+	      if (!context) {
+              throw new Error(`useCounter must be used
+                within a CounterProvider`);
+                                    }
+		
+		return context
+			
+		}
+
+
+4- move to the componnet that i want use the reduce inside it :
+
+by the destracturing defind the dispatch and the state 
+//make import for the custom hook that name is useCounter
+
+const {state, action}= useCounter()
+
+return(
+<>
+ // I can use the state and the dispatch here becouse i pass it by the context 
+</>
+)
+
+
+
+
+
+
+brifly:  createContext & reduce function => create the context provider{children} with value={{state,dispatch}} & surrondding it the App componnet to pass the data to all project => create the custom hook's => move to the ordered componnet and import the custom hook & by the destracturing bring the {state , dispatch}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+createContext + reduceFunction => create provider {children} with pass value={{state, dispatch}} and surrounding this provider in the App.js TO Make it avivlble on all project =>create custom hook by create function and inside the useContext(it choose the context that created) => move to the order componnet and by the destracturing for the custom hook bring to this componnet the {state,dispatch}
+

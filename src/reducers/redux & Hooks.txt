@@ -1,0 +1,27 @@
+redux & Hooks:
+
+useMemo : تستخدم لتخزين قينة معينه لتفادي اعادة حسابها مع كل ري ريندر 
+
+useEffect : side effect 
+
+useContext : to avoid the prop drilling , and pass the data to all chilld becouse it make the data glouble 
+
+useReducre : فصل المنطق البرمجي عن الكومبوننت بحيث يدع الكومبوننت فقط يركز على الui 
+ويستدعي المنطق البرمجي استدعاء من خلال الريديوسر الى الكومبوننت بدون ما يكون لبكود نفسو داخل الكومبوننت 
+
+
+Redux :-
+
+* single Source of truth : مصدر واحد للحقيقة
+
+1- user get the Action 
+2- will send the Action with the type and payload to the Reducer 
+3- the Reducer is have tow parameter (Action + Carrunt State )
+4- then the Reducer will connect with the API 
+5- API will answer of the Reducer request 
+6- the Reducer will Create New State 
+7- theen the New State will cahnge the sate in the component 
+
+* Uni dirctional data flow : تسير للبيانات باتجاه واحد 
+
+Component (User Get Action) => Action (Type + Payload) => Reducer (Current State + Action) => Create the New State => the New State will reflected on the Component 
